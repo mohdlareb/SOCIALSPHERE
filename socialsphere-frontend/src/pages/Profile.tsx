@@ -109,7 +109,7 @@ export default function Profile() {
           <div className="flex flex-col sm:flex-row items-center gap-6 relative z-10 text-center sm:text-left">
             {/* Avatar block with gradient rings */}
             <div className="w-24 h-24 rounded-full p-[3px] bg-gradient-to-tr from-purple-500 via-pink-500 to-indigo-500 overflow-hidden shadow-lg flex-shrink-0">
-              <div className="w-full h-full rounded-full bg-white dark:bg-gray-900 p-0.5">
+              <div className="w-full h-full rounded-full bg-slate-50 dark:bg-dark-bg p-0.5">
                 <div className="w-full h-full rounded-full bg-gray-800 overflow-hidden flex items-center justify-center font-bold text-white text-3xl">
                   {profile.profilePictureUrl ? (
                     <img src={profile.profilePictureUrl} alt={profile.username} className="w-full h-full object-cover" />
@@ -122,7 +122,7 @@ export default function Profile() {
 
             <div className="flex-1 min-w-0">
               <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-                <h1 className="text-2xl font-extrabold text-gray-900 dark:text-white truncate">@{profile.username}</h1>
+                <h1 className="text-2xl font-extrabold text-gray-900 dark:text-dark-text-primary truncate">@{profile.username}</h1>
                 
                 <div className="flex justify-center sm:justify-start gap-2">
                   <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20 text-[10px] font-semibold">
@@ -133,7 +133,7 @@ export default function Profile() {
                   {isOwnProfile ? (
                     <Link
                       to="/profile/edit"
-                      className="bg-white/40 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white text-xs px-3.5 py-1.5 rounded-xl hover:border-purple-500/30 transition-all font-semibold"
+                      className="bg-white/40 dark:bg-dark-card border border-gray-200 dark:border-dark-border text-gray-900 dark:text-dark-text-primary text-xs px-3.5 py-1.5 rounded-xl hover:border-purple-500/30 transition-all font-semibold"
                     >
                       Edit Profile
                     </Link>
@@ -143,7 +143,7 @@ export default function Profile() {
                       disabled={followBusy}
                       className={`text-xs px-4 py-1.5 rounded-xl font-bold transition-all disabled:opacity-50 cursor-pointer ${
                         isFollowing
-                          ? 'bg-white/40 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white hover:border-red-500/30'
+                          ? 'bg-white/40 dark:bg-dark-card border border-gray-200 dark:border-dark-border text-gray-900 dark:text-dark-text-primary hover:border-red-500/30'
                           : 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-md shadow-purple-500/10 hover:shadow-purple-500/20'
                       }`}
                     >
@@ -155,21 +155,21 @@ export default function Profile() {
 
               {/* Bio block */}
               {profile.bio && (
-                <p className="text-gray-600 dark:text-gray-300 text-xs mt-3 leading-relaxed max-w-md">
+                <p className="text-gray-600 dark:text-dark-text-secondary text-xs mt-3 leading-relaxed max-w-md">
                   {profile.bio}
                 </p>
               )}
 
               {/* Stats Counters */}
               <div className="flex justify-center sm:justify-start gap-5 mt-4 text-xs">
-                <span className="text-gray-400">
-                  <strong className="text-gray-900 dark:text-white font-bold">{posts.length}</strong> posts
+                <span className="text-gray-400 dark:text-dark-text-secondary">
+                  <strong className="text-gray-900 dark:text-dark-text-primary font-bold">{posts.length}</strong> posts
                 </span>
-                <button onClick={openFollowers} className="text-gray-400 hover:text-purple-400 transition cursor-pointer">
-                  <strong className="text-gray-900 dark:text-white font-bold">{counts.followerCount}</strong> followers
+                <button onClick={openFollowers} className="text-gray-400 dark:text-dark-text-secondary hover:text-purple-400 transition cursor-pointer">
+                  <strong className="text-gray-900 dark:text-dark-text-primary font-bold">{counts.followerCount}</strong> followers
                 </button>
-                <button onClick={openFollowing} className="text-gray-400 hover:text-purple-400 transition cursor-pointer">
-                  <strong className="text-gray-900 dark:text-white font-bold">{counts.followingCount}</strong> following
+                <button onClick={openFollowing} className="text-gray-400 dark:text-dark-text-secondary hover:text-purple-400 transition cursor-pointer">
+                  <strong className="text-gray-900 dark:text-dark-text-primary font-bold">{counts.followingCount}</strong> following
                 </button>
               </div>
             </div>
@@ -228,7 +228,7 @@ export default function Profile() {
                     onClick={() => setSelectedPost(post)}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="aspect-square bg-white/40 dark:bg-black/20 border border-gray-200/50 dark:border-white/10 rounded-2xl flex items-center justify-center p-1.5 overflow-hidden hover:border-purple-500/30 transition-all cursor-pointer shadow-sm relative group"
+                    className="aspect-square bg-white/40 dark:bg-dark-card border border-gray-200/50 dark:border-dark-border rounded-2xl flex items-center justify-center p-1.5 overflow-hidden hover:border-purple-500/30 transition-all cursor-pointer shadow-sm relative group"
                   >
                     {post.imageUrl ? (
                       isVideoUrl(post.imageUrl) ? (
@@ -240,7 +240,7 @@ export default function Profile() {
                         <img src={post.imageUrl} alt="" className="w-full h-full object-cover rounded-xl" />
                       )
                     ) : (
-                      <p className="text-gray-600 dark:text-gray-400 text-[10px] text-center line-clamp-4 px-2 leading-relaxed">
+                      <p className="text-gray-600 dark:text-dark-text-secondary text-[10px] text-center line-clamp-4 px-2 leading-relaxed">
                         {post.content}
                       </p>
                     )}
@@ -281,8 +281,8 @@ export default function Profile() {
                     fill="url(#gradient-area)"
                   />
                   {/* Grid Lines */}
-                  <line x1="0" y1="10" x2="100" y2="10" stroke="rgba(255,255,255,0.04)" strokeDasharray="2,2" />
-                  <line x1="0" y1="20" x2="100" y2="20" stroke="rgba(255,255,255,0.04)" strokeDasharray="2,2" />
+                  <line x1="0" y1="10" x2="100" y2="10" className="stroke-gray-200 dark:stroke-white/10" strokeDasharray="2,2" />
+                  <line x1="0" y1="20" x2="100" y2="20" className="stroke-gray-200 dark:stroke-white/10" strokeDasharray="2,2" />
                   
                   {/* Line curve */}
                   <path
@@ -293,7 +293,7 @@ export default function Profile() {
                   />
                 </svg>
                 <div className="absolute top-[16%] left-[60%] w-3 h-3 bg-purple-500 rounded-full animate-ping" />
-                <div className="absolute top-[16%] left-[60%] w-3 h-3 bg-purple-500 rounded-full border-2 border-gray-950" />
+                <div className="absolute top-[16%] left-[60%] w-3 h-3 bg-purple-500 rounded-full border-2 border-slate-50 dark:border-[#0B0F19]" />
               </div>
               <div className="flex justify-between items-center text-[10px] text-gray-500 mt-2">
                 <span>Mon</span>
@@ -328,20 +328,20 @@ export default function Profile() {
               </h3>
 
               <div className="grid grid-cols-3 gap-3 text-center">
-                <div className="p-3 bg-white/5 dark:bg-black/20 rounded-2xl border border-white/5 flex flex-col items-center">
+                <div className="p-3 bg-white/5 dark:bg-dark-card rounded-2xl border border-white/5 dark:border-dark-border flex flex-col items-center">
                   <Star size={24} className="text-yellow-500 fill-yellow-500/20" />
-                  <p className="text-[10px] font-bold text-gray-900 dark:text-white mt-1.5">Rising Star</p>
-                  <p className="text-[9px] text-gray-400 mt-0.5">Reach 100+ followers</p>
+                  <p className="text-[10px] font-bold text-gray-900 dark:text-dark-text-primary mt-1.5">Rising Star</p>
+                  <p className="text-[9px] text-gray-400 dark:text-dark-text-secondary mt-0.5">Reach 100+ followers</p>
                 </div>
-                <div className="p-3 bg-white/5 dark:bg-black/20 rounded-2xl border border-white/5 flex flex-col items-center">
+                <div className="p-3 bg-white/5 dark:bg-dark-card rounded-2xl border border-white/5 dark:border-dark-border flex flex-col items-center">
                   <Compass size={24} className="text-indigo-400" />
-                  <p className="text-[10px] font-bold text-gray-900 dark:text-white mt-1.5">Explorer</p>
-                  <p className="text-[9px] text-gray-400 mt-0.5">Visit 5+ echo rooms</p>
+                  <p className="text-[10px] font-bold text-gray-900 dark:text-dark-text-primary mt-1.5">Explorer</p>
+                  <p className="text-[9px] text-gray-400 dark:text-dark-text-secondary mt-0.5">Visit 5+ echo rooms</p>
                 </div>
-                <div className="p-3 bg-white/5 dark:bg-black/20 rounded-2xl border border-white/5 flex flex-col items-center">
+                <div className="p-3 bg-white/5 dark:bg-dark-card rounded-2xl border border-white/5 dark:border-dark-border flex flex-col items-center">
                   <Sparkles size={24} className="text-pink-400" />
-                  <p className="text-[10px] font-bold text-gray-900 dark:text-white mt-1.5">Stellar Post</p>
-                  <p className="text-[9px] text-gray-400 mt-0.5">Collect 50+ likes</p>
+                  <p className="text-[10px] font-bold text-gray-900 dark:text-dark-text-primary mt-1.5">Stellar Post</p>
+                  <p className="text-[9px] text-gray-400 dark:text-dark-text-secondary mt-0.5">Collect 50+ likes</p>
                 </div>
               </div>
             </div>

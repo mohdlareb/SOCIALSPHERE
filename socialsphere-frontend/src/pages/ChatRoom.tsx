@@ -84,18 +84,18 @@ export default function ChatRoom() {
       <div className="absolute -top-12 -left-12 w-28 h-28 bg-purple-500/10 rounded-full blur-2xl pointer-events-none" />
 
       {/* Header Info Panel */}
-      <div className="flex items-center justify-between border-b border-gray-200/50 dark:border-white/5 pb-4 mb-4 relative z-10">
+      <div className="flex items-center justify-between border-b border-gray-200/50 dark:border-dark-border pb-4 mb-4 relative z-10">
         <div>
           <Link to="/rooms" className="text-purple-400 hover:text-purple-300 text-xs font-semibold">
             ← Back to Rooms
           </Link>
-          <h2 className="text-md font-extrabold text-gray-900 dark:text-white mt-1 flex items-center gap-1.5">
+          <h2 className="text-md font-extrabold text-gray-900 dark:text-dark-text-primary mt-1 flex items-center gap-1.5">
             <span>{roomName}</span>
           </h2>
         </div>
 
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-1.5 px-3 py-1 bg-white/40 dark:bg-white/5 rounded-full border border-gray-200 dark:border-white/10">
+          <div className="flex items-center gap-1.5 px-3 py-1 bg-white/40 dark:bg-dark-card rounded-full border border-gray-200 dark:border-dark-border">
             {/* Pulsing indicator ring */}
             <span className="relative flex h-2 w-2">
               <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${
@@ -105,7 +105,7 @@ export default function ChatRoom() {
                 connected ? 'bg-green-500' : 'bg-orange-500'
               }`} />
             </span>
-            <span className="text-[10px] text-gray-600 dark:text-gray-300 font-bold">
+            <span className="text-[10px] text-gray-600 dark:text-dark-text-secondary font-bold">
               {connected ? 'STOMP Real-time' : 'Simulated DB'}
             </span>
           </div>
@@ -157,12 +157,12 @@ export default function ChatRoom() {
                     className={`rounded-2xl px-4 py-2.5 text-xs shadow-md border ${
                       isMine
                         ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white border-purple-500/20'
-                        : 'bg-white/40 dark:bg-white/5 text-gray-800 dark:text-gray-200 border-gray-250 dark:border-white/5'
+                        : 'bg-white/40 dark:bg-dark-card text-gray-850 dark:text-dark-text-primary border-gray-200/60 dark:border-dark-border'
                     }`}
                   >
                     <p className="leading-relaxed whitespace-pre-wrap">{msg.content}</p>
                   </div>
-                  <span className={`text-[8px] text-gray-400 px-1.5 block ${isMine ? 'text-right' : 'text-left'}`}>
+                  <span className={`text-[8px] text-gray-400 dark:text-dark-text-secondary px-1.5 block ${isMine ? 'text-right' : 'text-left'}`}>
                     {new Date(msg.sentAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </span>
                 </div>
@@ -174,13 +174,13 @@ export default function ChatRoom() {
       </div>
 
       {/* Input Message Form */}
-      <form onSubmit={handleSend} className="flex gap-2 pt-4 border-t border-gray-200/50 dark:border-white/5 mt-4 relative z-10">
+      <form onSubmit={handleSend} className="flex gap-2 pt-4 border-t border-gray-200/50 dark:border-dark-border mt-4 relative z-10">
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Type a cosmic echo message..."
-          className="flex-1 bg-white/40 dark:bg-black/20 text-gray-900 dark:text-white rounded-xl px-4 py-3 outline-none border border-gray-200 dark:border-white/10 focus:border-purple-500 text-xs transition-colors"
+          className="flex-1 glass-input rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-purple-500 text-xs"
         />
         <button
           type="submit"

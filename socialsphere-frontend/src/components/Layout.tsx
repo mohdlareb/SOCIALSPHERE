@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen bg-mesh-light dark:bg-mesh-dark text-gray-900 dark:text-white transition-colors duration-300">
+    <div className="min-h-screen w-full bg-[var(--app-bg)] text-gray-900 dark:text-white transition-colors duration-300">
       {/* Mobile Top Header (only visible on mobile) */}
       <header className="md:hidden sticky top-0 z-40 bg-white/40 dark:bg-black/40 backdrop-blur-xl border-b border-gray-200/50 dark:border-white/5 py-3 px-4 flex items-center justify-between">
         <h1 className="text-xl font-extrabold tracking-tight">

@@ -95,7 +95,7 @@ export default function Search() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2 select-none">
+      <h1 className="text-2xl font-bold text-gray-900 dark:text-dark-text-primary mb-6 flex items-center gap-2 select-none">
         <Sparkles size={22} className="text-purple-500" />
         <span>Explore the Sphere</span>
       </h1>
@@ -115,7 +115,7 @@ export default function Search() {
             setQuery(value);
             setSearchParams(value ? { query: value } : {});
           }}
-          className="w-full bg-white/40 dark:bg-black/20 backdrop-blur-md text-gray-900 dark:text-white rounded-2xl pl-12 pr-4 py-3.5 outline-none border border-gray-200 dark:border-white/10 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all placeholder-gray-500"
+          className="w-full bg-white/40 dark:bg-dark-card/50 backdrop-blur-md text-gray-900 dark:text-dark-text-primary rounded-2xl pl-12 pr-4 py-3.5 outline-none border border-gray-200 dark:border-dark-border focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all placeholder-gray-500"
         />
       </div>
 
@@ -128,7 +128,7 @@ export default function Search() {
             exit={{ opacity: 0 }}
             className="flex justify-center py-10"
           >
-            <p className="text-xs text-gray-400 animate-pulse">Filtering stellar coordinates...</p>
+            <p className="text-xs text-gray-400 dark:text-dark-text-secondary animate-pulse">Filtering stellar coordinates...</p>
           </motion.div>
         )}
 
@@ -141,7 +141,7 @@ export default function Search() {
             className="space-y-3"
           >
             {results.length === 0 ? (
-              <p className="text-gray-500 text-sm text-center py-6">
+              <p className="text-gray-500 dark:text-dark-text-secondary text-sm text-center py-6">
                 No accounts found matching "{query}"
               </p>
             ) : (
@@ -162,9 +162,9 @@ export default function Search() {
                           )}
                         </div>
                         <div>
-                          <p className="text-gray-900 dark:text-white font-bold text-sm">@{user.username}</p>
+                          <p className="text-gray-900 dark:text-dark-text-primary font-bold text-sm">@{user.username}</p>
                           {user.bio && (
-                            <p className="text-gray-400 text-xs mt-0.5 line-clamp-1">{user.bio}</p>
+                            <p className="text-gray-400 dark:text-dark-text-secondary text-xs mt-0.5 line-clamp-1">{user.bio}</p>
                           )}
                         </div>
                       </div>
@@ -187,7 +187,7 @@ export default function Search() {
           >
             {/* 1. Trending Hashtags List */}
             <div>
-              <h2 className="text-xs font-bold tracking-wider text-gray-400 uppercase mb-4 flex items-center gap-1.5 select-none">
+              <h2 className="text-xs font-bold tracking-wider text-gray-400 dark:text-dark-text-secondary uppercase mb-4 flex items-center gap-1.5 select-none">
                 <Flame size={14} className="text-purple-500" />
                 <span>Trending Coordinates</span>
               </h2>
@@ -199,11 +199,11 @@ export default function Search() {
                     onClick={() => selectHashtag(t.tag)}
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
-                    className="px-4 py-2 bg-white/40 dark:bg-white/5 border border-gray-200 dark:border-white/5 rounded-full hover:border-purple-500/30 text-xs font-semibold text-gray-700 dark:text-gray-300 cursor-pointer flex items-center gap-1.5 transition-all shadow-sm"
+                    className="px-4 py-2 bg-white/40 dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-full hover:border-purple-500/30 text-xs font-semibold text-gray-700 dark:text-dark-text-primary cursor-pointer flex items-center gap-1.5 transition-all shadow-sm"
                   >
                     <span className="text-purple-400">#</span>
                     <span>{t.tag}</span>
-                    <span className="text-[10px] text-gray-400 opacity-60">({t.posts})</span>
+                    <span className="text-[10px] text-gray-400 dark:text-dark-text-secondary opacity-60">({t.posts})</span>
                   </motion.button>
                 ))}
               </div>
@@ -211,7 +211,7 @@ export default function Search() {
 
             {/* 2. Masonry grid visual cards */}
             <div>
-              <h2 className="text-xs font-bold tracking-wider text-gray-400 uppercase mb-4 flex items-center gap-1.5 select-none">
+              <h2 className="text-xs font-bold tracking-wider text-gray-400 dark:text-dark-text-secondary uppercase mb-4 flex items-center gap-1.5 select-none">
                 <Grid size={14} className="text-pink-500" />
                 <span>Curated Spheres</span>
               </h2>

@@ -55,7 +55,7 @@ export default function RoomsList() {
     <div className="space-y-6">
       
       {/* Page Title */}
-      <h1 className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2 select-none">
+      <h1 className="text-2xl font-bold text-gray-900 dark:text-dark-text-primary flex items-center gap-2 select-none">
         <Radio size={22} className="text-purple-500 animate-pulse" />
         <span>Echo Chat Rooms</span>
       </h1>
@@ -65,7 +65,7 @@ export default function RoomsList() {
         onSubmit={handleCreate}
         className="glass-card rounded-3xl p-5 border border-white/10 shadow-xl space-y-3"
       >
-        <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wide flex items-center gap-1.5">
+        <h3 className="text-xs font-bold text-gray-400 dark:text-dark-text-secondary uppercase tracking-wide flex items-center gap-1.5">
           <Plus size={14} className="text-purple-400" />
           <span>Broadcast New Channel</span>
         </h3>
@@ -76,14 +76,14 @@ export default function RoomsList() {
             placeholder="Channel Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full bg-white/40 dark:bg-black/20 text-gray-900 dark:text-white rounded-xl px-4 py-2.5 outline-none border border-gray-200 dark:border-white/5 focus:border-purple-500 text-xs transition-colors"
+            className="w-full bg-white/40 dark:bg-dark-card/50 text-gray-900 dark:text-dark-text-primary rounded-xl px-4 py-2.5 outline-none border border-gray-200 dark:border-dark-border focus:border-purple-500 text-xs transition-colors"
           />
           <input
             type="text"
             placeholder="Short Description (Vibe status...)"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="w-full bg-white/40 dark:bg-black/20 text-gray-900 dark:text-white rounded-xl px-4 py-2.5 outline-none border border-gray-200 dark:border-white/5 focus:border-purple-500 text-xs transition-colors"
+            className="w-full bg-white/40 dark:bg-dark-card/50 text-gray-900 dark:text-dark-text-primary rounded-xl px-4 py-2.5 outline-none border border-gray-200 dark:border-dark-border focus:border-purple-500 text-xs transition-colors"
           />
         </div>
 
@@ -98,11 +98,11 @@ export default function RoomsList() {
 
       {/* Loading state indicator */}
       {loading && (
-        <p className="text-gray-500 text-xs text-center py-6 animate-pulse">Syncing Echo Frequencies...</p>
+        <p className="text-gray-500 dark:text-dark-text-secondary text-xs text-center py-6 animate-pulse">Syncing Echo Frequencies...</p>
       )}
       
       {!loading && rooms.length === 0 && (
-        <p className="text-gray-500 text-xs text-center py-6">No active channels. Create the first one above!</p>
+        <p className="text-gray-500 dark:text-dark-text-secondary text-xs text-center py-6">No active channels. Create the first one above!</p>
       )}
 
       {/* Rooms Grid list */}
@@ -119,23 +119,23 @@ export default function RoomsList() {
               <CardTilt>
                 <div
                   onClick={() => handleEnter(room)}
-                  className="w-full text-left bg-white/40 dark:bg-white/5 border border-gray-200/50 dark:border-white/5 rounded-2xl p-5 hover:border-purple-500/30 transition-all flex items-center justify-between cursor-pointer shadow-md select-none relative group"
+                  className="w-full text-left bg-white/40 dark:bg-dark-card border border-gray-200/50 dark:border-dark-border rounded-2xl p-5 hover:border-purple-500/30 transition-all flex items-center justify-between cursor-pointer shadow-md select-none relative group"
                 >
                   <div className="flex items-start gap-3 flex-1 min-w-0">
                     <div className="p-3 bg-purple-500/10 text-purple-400 rounded-xl flex-shrink-0 mt-0.5">
                       <MessageSquare size={16} />
                     </div>
                     <div className="min-w-0">
-                      <p className="text-gray-900 dark:text-white font-bold text-sm truncate group-hover:text-purple-400 transition-colors">
+                      <p className="text-gray-900 dark:text-dark-text-primary font-bold text-sm truncate group-hover:text-purple-400 transition-colors">
                         {room.name}
                       </p>
                       {room.description && (
-                        <p className="text-gray-400 text-xs mt-0.5 truncate leading-relaxed">
+                        <p className="text-gray-400 dark:text-dark-text-secondary text-xs mt-0.5 truncate leading-relaxed">
                           {room.description}
                         </p>
                       )}
-                      <p className="text-gray-500 text-[10px] mt-2">
-                        Hosted by <span className="font-semibold text-gray-700 dark:text-gray-300">@{room.creator.username}</span>
+                      <p className="text-gray-500 dark:text-dark-text-secondary text-[10px] mt-2">
+                        Hosted by <span className="font-semibold text-gray-700 dark:text-dark-text-primary">@{room.creator.username}</span>
                       </p>
                     </div>
                   </div>

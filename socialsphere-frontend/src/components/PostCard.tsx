@@ -118,7 +118,7 @@ export default function PostCard({ post, currentUsername, onUpdated, onDeleted }
 
   return (
     <CardTilt className="mb-6">
-      <div className="glass-card rounded-3xl overflow-hidden border border-white/10 dark:border-white/5 shadow-xl relative">
+      <div className="glass-card rounded-3xl overflow-hidden border border-white/10 dark:border-dark-border shadow-xl relative">
         
         {/* Floating Heart Blast Container */}
         <div className="absolute left-6 bottom-16 pointer-events-none z-20">
@@ -147,18 +147,18 @@ export default function PostCard({ post, currentUsername, onUpdated, onDeleted }
           <div className="flex-1">
             <Link
               to={`/profile/${post.author.username}`}
-              className="text-gray-900 dark:text-white font-bold text-sm hover:text-purple-400 transition"
+              className="text-gray-900 dark:text-dark-text-primary font-bold text-sm hover:text-purple-400 transition"
             >
               {post.author.username}
             </Link>
-            <p className="text-gray-400 text-xs mt-0.5">{new Date(post.createdAt).toLocaleDateString()} {new Date(post.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</p>
+            <p className="text-gray-400 dark:text-dark-text-secondary text-xs mt-0.5">{new Date(post.createdAt).toLocaleDateString()} {new Date(post.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</p>
           </div>
 
           {isOwner && (
             <div className="relative">
               <button
                 onClick={() => setMenuOpen((v) => !v)}
-                className="text-gray-400 hover:text-gray-900 dark:hover:text-white transition cursor-pointer"
+                className="text-gray-400 dark:text-dark-text-secondary hover:text-gray-900 dark:hover:text-dark-text-primary transition cursor-pointer"
                 aria-label="Post options"
               >
                 <MoreHorizontal size={18} />
@@ -170,14 +170,14 @@ export default function PostCard({ post, currentUsername, onUpdated, onDeleted }
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
-                    className="absolute right-0 mt-2 w-32 glass-card rounded-2xl shadow-xl z-20 overflow-hidden border border-white/10"
+                    className="absolute right-0 mt-2 w-32 glass-card rounded-2xl shadow-xl z-20 overflow-hidden border border-white/10 dark:border-dark-border"
                   >
                     <button
                       onClick={() => {
                         setEditing(true);
                         setMenuOpen(false);
                       }}
-                      className="w-full text-left px-4 py-2.5 text-xs text-gray-700 dark:text-gray-200 hover:bg-purple-500/10 hover:text-purple-400 transition cursor-pointer"
+                      className="w-full text-left px-4 py-2.5 text-xs text-gray-700 dark:text-dark-text-secondary hover:bg-purple-500/10 hover:text-purple-400 transition cursor-pointer"
                     >
                       Edit Post
                     </button>
@@ -204,14 +204,14 @@ export default function PostCard({ post, currentUsername, onUpdated, onDeleted }
               value={editContent}
               onChange={(e) => setEditContent(e.target.value)}
               rows={3}
-              className="w-full bg-white/5 border border-white/10 text-gray-900 dark:text-white rounded-2xl px-4 py-3 outline-none focus:ring-1 focus:ring-purple-500 resize-none text-sm"
+              className="w-full bg-white/5 dark:bg-dark-card border border-white/10 dark:border-dark-border text-gray-900 dark:text-dark-text-primary rounded-2xl px-4 py-3 outline-none focus:ring-1 focus:ring-purple-500 resize-none text-sm"
             />
             <ImageUploadInput value={editImageUrl} onChange={setEditImageUrl} />
             <div className="flex gap-2 justify-end">
               <button
                 type="button"
                 onClick={() => setEditing(false)}
-                className="text-xs px-4 py-2 rounded-xl text-gray-500 dark:text-gray-400 hover:bg-white/5 transition cursor-pointer"
+                className="text-xs px-4 py-2 rounded-xl text-gray-500 dark:text-dark-text-secondary hover:bg-white/5 transition cursor-pointer"
               >
                 Cancel
               </button>
@@ -228,7 +228,7 @@ export default function PostCard({ post, currentUsername, onUpdated, onDeleted }
           <>
             {/* Post Content */}
             <div className="px-5 pb-4">
-              <p className="text-gray-800 dark:text-gray-150 text-sm leading-relaxed whitespace-pre-wrap">
+              <p className="text-gray-800 dark:text-dark-text-primary text-sm leading-relaxed whitespace-pre-wrap">
                 {post.content}
               </p>
             </div>
@@ -255,13 +255,13 @@ export default function PostCard({ post, currentUsername, onUpdated, onDeleted }
             )}
 
             {/* Micro-interaction Footer Buttons */}
-            <div className="flex items-center justify-between px-5 py-4 border-t border-white/5">
+            <div className="flex items-center justify-between px-5 py-4 border-t border-white/5 dark:border-dark-border">
               <div className="flex items-center gap-5">
                 {/* Like Button */}
                 <motion.button
                   onClick={handleLike}
                   whileTap={{ scale: 0.8 }}
-                  className="flex items-center gap-1.5 text-xs font-semibold text-gray-500 dark:text-gray-400 hover:text-red-500 cursor-pointer transition"
+                  className="flex items-center gap-1.5 text-xs font-semibold text-gray-500 dark:text-dark-text-secondary hover:text-red-500 cursor-pointer transition"
                 >
                   <Heart
                     size={18}
@@ -331,16 +331,16 @@ export default function PostCard({ post, currentUsername, onUpdated, onDeleted }
                                 c.author.username.charAt(0).toUpperCase()
                               )}
                             </div>
-                            <div className="flex-1 bg-white/5 dark:bg-black/25 rounded-2xl px-3 py-2 border border-white/5">
+                            <div className="flex-1 bg-white/5 dark:bg-dark-card rounded-2xl px-3 py-2 border border-white/5 dark:border-dark-border">
                               <div className="flex justify-between items-center mb-0.5">
-                                <span className="font-bold text-gray-900 dark:text-white">
+                                <span className="font-bold text-gray-900 dark:text-dark-text-primary">
                                   {c.author.username}
                                 </span>
-                                <span className="text-[10px] text-gray-400">
+                                <span className="text-[10px] text-gray-400 dark:text-dark-text-secondary">
                                   {new Date(c.createdAt).toLocaleDateString()}
                                 </span>
                               </div>
-                              <p className="text-gray-700 dark:text-gray-300 leading-normal">
+                              <p className="text-gray-700 dark:text-dark-text-secondary leading-normal">
                                 {c.content}
                               </p>
                             </div>
@@ -360,7 +360,7 @@ export default function PostCard({ post, currentUsername, onUpdated, onDeleted }
                         placeholder="Add a comment..."
                         value={commentText}
                         onChange={(e) => setCommentText(e.target.value)}
-                        className="flex-1 bg-white/5 border border-white/10 text-gray-900 dark:text-white text-xs rounded-xl px-3.5 py-2.5 outline-none focus:border-purple-500 transition-colors"
+                        className="flex-1 bg-white/5 dark:bg-dark-card border border-white/10 dark:border-dark-border text-gray-900 dark:text-dark-text-primary text-xs rounded-xl px-3.5 py-2.5 outline-none focus:border-purple-500 transition-colors"
                       />
                       <button
                         type="submit"

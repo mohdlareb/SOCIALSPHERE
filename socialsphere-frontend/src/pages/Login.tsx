@@ -70,7 +70,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 flex items-center justify-center px-4 relative overflow-hidden bg-mesh-dark">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0B0F19] text-gray-900 dark:text-white flex items-center justify-center px-4 relative overflow-hidden bg-mesh-light dark:bg-mesh-dark transition-colors duration-300">
       {/* Floating Animated Ambient Elements */}
       <motion.div
         className="absolute w-72 h-72 rounded-full bg-purple-600/10 blur-3xl"
@@ -144,7 +144,7 @@ export default function Login() {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
-                    className="w-full bg-white/5 dark:bg-black/20 text-white rounded-2xl pl-10 pr-4 py-3.5 outline-none border border-white/10 focus:border-purple-500 transition-colors placeholder-gray-500"
+                    className="w-full glass-input rounded-2xl pl-10 pr-4 py-3.5 outline-none focus:border-purple-500 transition-colors placeholder-gray-500"
                   />
                 </div>
                 <div className="relative">
@@ -155,7 +155,7 @@ export default function Login() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    className="w-full bg-white/5 dark:bg-black/20 text-white rounded-2xl pl-10 pr-4 py-3.5 outline-none border border-white/10 focus:border-purple-500 transition-colors placeholder-gray-500"
+                    className="w-full glass-input rounded-2xl pl-10 pr-4 py-3.5 outline-none focus:border-purple-500 transition-colors placeholder-gray-500"
                   />
                 </div>
 
@@ -216,8 +216,8 @@ export default function Login() {
                       whileTap={{ scale: 0.96 }}
                       className={`p-3.5 rounded-2xl flex flex-col items-center gap-2 border transition-all cursor-pointer ${
                         isSelected
-                          ? 'bg-gradient-to-br from-purple-500/20 to-pink-500/20 border-purple-500 text-white neon-glow-purple'
-                          : 'bg-white/5 border-white/10 text-gray-400 hover:text-white'
+                          ? 'bg-gradient-to-br from-purple-500/20 to-pink-500/20 border-purple-500 text-purple-600 dark:text-purple-300 neon-glow-purple'
+                          : 'bg-gray-100 dark:bg-white/5 border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200/50 dark:hover:bg-white/10'
                       }`}
                     >
                       <span className="text-2xl">{vibe.emoji}</span>
@@ -256,7 +256,7 @@ export default function Login() {
                     alt="Preview avatar"
                     className="w-full h-full object-cover rounded-full bg-gray-800"
                   />
-                  <div className="absolute bottom-1 right-1 bg-green-500 w-5 h-5 rounded-full border-2 border-gray-950 flex items-center justify-center">
+                  <div className="absolute bottom-1 right-1 bg-green-500 w-5 h-5 rounded-full border-2 border-slate-50 dark:border-[#0B0F19] flex items-center justify-center">
                     <CheckCircle2 size={10} className="text-white" />
                   </div>
                 </div>
@@ -280,7 +280,7 @@ export default function Login() {
                   placeholder="Set your status bio (optional)..."
                   value={customBio}
                   onChange={(e) => setCustomBio(e.target.value)}
-                  className="w-full bg-white/5 text-white rounded-2xl px-4 py-3 outline-none border border-white/10 focus:border-purple-500 transition-colors text-sm text-center placeholder-gray-500"
+                  className="w-full glass-input rounded-2xl px-4 py-3 outline-none focus:border-purple-500 transition-colors text-sm text-center placeholder-gray-500"
                 />
               </div>
 

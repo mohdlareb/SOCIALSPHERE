@@ -156,7 +156,7 @@ export default function Feed() {
   if (!username) return null;
 
   return (
-    <div className="relative">
+    <div className="relative min-h-screen bg-[var(--app-bg)] dark:bg-[#0B0F19]">
       
       {/* Stories Horizontal Tray */}
       <StoriesBar
@@ -170,12 +170,12 @@ export default function Feed() {
       <ReelsFeed />
 
       {/* Feed Filter Segment & Pull to Refresh Toggle */}
-      <div className="flex items-center justify-between border-b border-gray-200/50 dark:border-white/5 mb-6 select-none">
+      <div className="flex items-center justify-between border-b border-gray-200/50 dark:border-dark-border mb-6 select-none">
         <div className="flex gap-6 text-sm font-semibold">
           <button
             onClick={() => setFeedType('foryou')}
             className={`pb-3 relative cursor-pointer transition ${
-              feedType === 'foryou' ? 'text-purple-500' : 'text-gray-500 hover:text-gray-800 dark:hover:text-gray-200'
+              feedType === 'foryou' ? 'text-purple-500' : 'text-gray-500 hover:text-gray-800 dark:text-dark-text-secondary dark:hover:text-dark-text-primary'
             }`}
           >
             <span className="flex items-center gap-1">
@@ -192,7 +192,7 @@ export default function Feed() {
           <button
             onClick={() => setFeedType('following')}
             className={`pb-3 relative cursor-pointer transition ${
-              feedType === 'following' ? 'text-purple-500' : 'text-gray-500 hover:text-gray-800 dark:hover:text-gray-200'
+              feedType === 'following' ? 'text-purple-500' : 'text-gray-500 hover:text-gray-800 dark:text-dark-text-secondary dark:hover:text-dark-text-primary'
             }`}
           >
             <span>Following</span>
