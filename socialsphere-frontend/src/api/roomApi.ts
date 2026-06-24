@@ -24,3 +24,6 @@ export async function getRoomMessages(roomId: number): Promise<ChatMessage[]> {
   const res = await axiosClient.get<ChatMessage[]>(`/rooms/${roomId}/messages`);
   return res.data;
 }
+export async function deleteRoom(roomId: number, username: string): Promise<void> {
+  await axiosClient.delete(`/rooms/${roomId}/${username}`);
+}

@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import type { FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/useAuth';
-import { getAllRooms, createRoom, joinRoom } from '../api/roomApi';
 import type { EchoRoom } from '../types';
+import { Trash2 } from 'lucide-react';
+import { getAllRooms, createRoom, joinRoom, deleteRoom } from '../api/roomApi';
 
 export default function RoomsList() {
   const { username } = useAuth();
@@ -33,12 +34,20 @@ export default function RoomsList() {
       setCreating(false);
     }
   };
+  
 
   const handleEnter = async (room: EchoRoom) => {
     if (!username) return;
     await joinRoom(room.id, username).catch(() => {});
     navigate(`/rooms/${room.id}`);
   };
+  const handleDelete = async (e: React.MouseEvent, roomId: number) => {
+  e.stopPropagation();
+  if (!username) return;
+  if (!window.confirm('Delete this room? This cannot be undone.')) return;
+  await deleteRoom(roomId, username);
+  setRooms((prev) => prev.filter((r) => r.id !== roomId));
+};
 
   return (
     <div>
@@ -75,18 +84,29 @@ export default function RoomsList() {
 
       <div className="space-y-3">
         {rooms.map((room) => (
-          <button
-            key={room.id}
-            onClick={() => handleEnter(room)}
-            className="w-full text-left bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-4 hover:border-purple-400 dark:hover:border-purple-500 transition flex items-center justify-between"
-          >
-            <div>
-              <p className="text-gray-900 dark:text-white font-semibold">{room.name}</p>
-              {room.description && <p className="text-gray-500 dark:text-gray-400 text-sm">{room.description}</p>}
-              <p className="text-gray-400 dark:text-gray-500 text-xs mt-1">Created by {room.creator.username}</p>
-            </div>
+          <div
+  key={room.id}
+  onClick={() => handleEnter(room)}
+  className="w-full text-left bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-4 hover:border-purple-400 dark:hover:border-purple-500 transition flex items-center justify-between cursor-pointer"
+>
+          <div>
+            <p className="text-gray-900 dark:text-white font-semibold">{room.name}</p>
+            {room.description && <p className="text-gray-500 dark:text-gray-400 text-sm">{room.description}</p>}
+            <p className="text-gray-400 dark:text-gray-500 text-xs mt-1">Created by {room.creator.username}</p>
+          </div>
+          <div className="flex items-center gap-3">
+            {room.creator.username === username && (
+              <button
+                onClick={(e) => handleDelete(e, room.id)}
+                className="text-gray-400 hover:text-red-500 transition"
+                aria-label="Delete room"
+              >
+                <Trash2 size={18} />
+              </button>
+            )}
             <span className="text-purple-500 dark:text-purple-400 text-sm">Enter →</span>
-          </button>
+          </div>
+        </div>
         ))}
       </div>
     </div>

@@ -1,17 +1,21 @@
 import { useState, useEffect, useRef } from 'react';
 import type { FormEvent } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/useAuth';
 import { useChatSocket } from '../hooks/useChatSocket';
-import { getRoomMessages } from '../api/roomApi';
+import { getRoomMessages, deleteRoom, getAllRooms } from '../api/roomApi';
+import { Trash2 } from 'lucide-react';
+
 
 export default function ChatRoom() {
+  const [isCreator, setIsCreator] = useState(false);
   const { roomId } = useParams<{ roomId: string }>();
   const { username } = useAuth();
   const numericRoomId = Number(roomId);
   const { messages, setMessages, connected, sendMessage } = useChatSocket(numericRoomId);
   const [input, setInput] = useState('');
   const bottomRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getRoomMessages(numericRoomId).then(setMessages);
@@ -20,6 +24,13 @@ export default function ChatRoom() {
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
+  useEffect(() => {
+  if (!username) return;
+  getAllRooms().then((rooms) => {
+    const room = rooms.find((r) => r.id === numericRoomId);
+    setIsCreator(room?.creator.username === username);
+  });
+}, [numericRoomId, username]);
 
   const handleSend = (e: FormEvent) => {
     e.preventDefault();
@@ -27,6 +38,12 @@ export default function ChatRoom() {
     sendMessage(username, input);
     setInput('');
   };
+  const handleDeleteRoom = async () => {
+  if (!username) return;
+  if (!window.confirm('Delete this room? This cannot be undone.')) return;
+  await deleteRoom(numericRoomId, username);
+  navigate('/rooms');
+};
 
   return (
     <div className="flex flex-col h-[calc(100vh-140px)] sm:h-[calc(100vh-120px)]">
@@ -34,9 +51,16 @@ export default function ChatRoom() {
         <Link to="/rooms" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white text-sm">
           ← Back to rooms
         </Link>
-        <span className={`text-xs ${connected ? 'text-green-400' : 'text-gray-500'}`}>
-          {connected ? '● Connected' : '○ Connecting...'}
-        </span>
+        <div className="flex items-center gap-3">
+          <span className={`text-xs ${connected ? 'text-green-400' : 'text-gray-500'}`}>
+            {connected ? '● Connected' : '○ Connecting...'}
+          </span>
+          {isCreator && (
+            <button onClick={handleDeleteRoom} className="text-gray-400 hover:text-red-500 transition" aria-label="Delete room">
+              <Trash2 size={18} />
+            </button>
+          )}
+        </div>
       </div>
 
       <div className="flex-1 overflow-y-auto space-y-3 pr-1">
