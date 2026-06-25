@@ -18,7 +18,16 @@ interface PostCardProps {
 
 export default function PostCard({ post, currentUsername, onUpdated, onDeleted }: PostCardProps) {
   const [likeCount, setLikeCount] = useState<number | null>(null);
-  const [liked, setLiked] = useState(false);
+  const [liked, setLiked] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    try {
+      const storedLikes = localStorage.getItem(`ss_likes_${currentUsername}`);
+      if (!storedLikes) return false;
+      return (JSON.parse(storedLikes) as number[]).includes(post.id);
+    } catch {
+      return false;
+    }
+  });
   const [comments, setComments] = useState<Comment[] | null>(null);
   const [commentText, setCommentText] = useState('');
   const [showComments, setShowComments] = useState(false);
@@ -39,14 +48,7 @@ export default function PostCard({ post, currentUsername, onUpdated, onDeleted }
     getLikeCount(post.id)
       .then(setLikeCount)
       .catch(() => setLikeCount(0));
-    
-    // Check if liked in mock storage
-    const storedLikes = localStorage.getItem(`ss_likes_${currentUsername}`);
-    if (storedLikes) {
-      const likedIds = JSON.parse(storedLikes) as number[];
-      setLiked(likedIds.includes(post.id));
-    }
-  }, [post.id, currentUsername]);
+  }, [post.id]);
 
   const handleLike = async () => {
     const wasLiked = liked;
@@ -240,14 +242,14 @@ export default function PostCard({ post, currentUsername, onUpdated, onDeleted }
                   <video
                     src={post.imageUrl}
                     controls
-                    className="w-full max-h-[450px] bg-black/40 object-cover"
+                    className="w-full max-h-[450px] bg-black/40 object-contain"
                   />
                 ) : (
                   <div className="w-full max-h-[450px] bg-black/10 dark:bg-black/40 flex items-center justify-center overflow-hidden">
                     <img
                       src={post.imageUrl}
                       alt="Post attachment"
-                      className="w-full max-h-[450px] object-cover hover:scale-105 transition duration-700"
+                      className="w-full max-h-[450px] object-contain hover:scale-105 transition duration-700"
                     />
                   </div>
                 )}
