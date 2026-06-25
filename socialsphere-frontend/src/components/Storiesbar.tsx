@@ -43,17 +43,17 @@ export default function StoriesBar({ stories, currentUsername, onSelectUser, onS
   const ringFor = (hasStory: boolean) =>
     hasStory
       ? 'bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400'
-      : 'bg-gray-300 dark:bg-gray-700';
+      : 'bg-gray-300 dark:bg-dark-border';
 
   return (
     <>
-      <div className="flex gap-4 overflow-x-auto pb-4 mb-6 border-b border-gray-200 dark:border-gray-800 scrollbar-hide">
+      <div className="flex gap-4 overflow-x-auto pb-4 mb-6 border-b border-gray-200 dark:border-dark-border scrollbar-hide">
         <button
           onClick={() => (ownGroup ? onSelectUser(currentUsername) : setShowAddModal(true))}
           className="flex flex-col items-center gap-1.5 flex-shrink-0"
         >
           <div className={`w-16 h-16 rounded-full p-[2px] relative ${ringFor(!!ownGroup)}`}>
-            <div className="w-full h-full rounded-full bg-white dark:bg-gray-950 p-0.5">
+            <div className="w-full h-full rounded-full bg-white dark:bg-dark-bg p-0.5">
               <div className="w-full h-full rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center overflow-hidden">
                 {currentUsername.charAt(0).toUpperCase()}
               </div>
@@ -63,13 +63,13 @@ export default function StoriesBar({ stories, currentUsername, onSelectUser, onS
                 e.stopPropagation();
                 setShowAddModal(true);
               }}
-              className="absolute -bottom-0.5 -right-0.5 bg-purple-500 text-white rounded-full p-1 border-2 border-white dark:border-gray-950"
+              className="absolute -bottom-0.5 -right-0.5 bg-purple-500 text-white rounded-full p-1 border-2 border-white dark:border-dark-bg"
               aria-label="Add story"
             >
               <Plus size={12} />
             </button>
           </div>
-          <span className="text-xs text-gray-600 dark:text-gray-300">Your story</span>
+          <span className="text-xs text-gray-600 dark:text-dark-text-secondary">Your story</span>
         </button>
 
         {otherGroups.map((story) => {
@@ -81,7 +81,7 @@ export default function StoriesBar({ stories, currentUsername, onSelectUser, onS
               className="flex flex-col items-center gap-1.5 flex-shrink-0"
             >
               <div className={`w-16 h-16 rounded-full p-[2px] ${ringFor(true)}`}>
-                <div className="w-full h-full rounded-full bg-white dark:bg-gray-950 p-0.5">
+                <div className="w-full h-full rounded-full bg-white dark:bg-dark-bg p-0.5">
                   <div className="w-full h-full rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center overflow-hidden">
                     {story.profilePictureUrl ? (
                       <img src={story.profilePictureUrl} alt={story.username} className="w-full h-full object-cover" />
@@ -91,7 +91,7 @@ export default function StoriesBar({ stories, currentUsername, onSelectUser, onS
                   </div>
                 </div>
               </div>
-              <span className="text-xs text-gray-600 dark:text-gray-300 max-w-[64px] truncate">{story.username}</span>
+              <span className="text-xs text-gray-600 dark:text-dark-text-secondary max-w-[64px] truncate">{story.username}</span>
             </button>
           );
         })}

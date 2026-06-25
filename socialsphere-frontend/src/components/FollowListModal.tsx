@@ -11,10 +11,10 @@ interface FollowListModalProps {
 export default function FollowListModal({ title, users, onClose }: FollowListModalProps) {
   return (
     <div className="fixed inset-0 bg-black/60 z-[100] flex items-center justify-center px-4">
-      <div className="w-full max-w-sm bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-800 max-h-[70vh] flex flex-col">
-        <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-800 px-4 py-3">
-          <h2 className="font-semibold text-gray-900 dark:text-white">{title}</h2>
-          <button onClick={onClose} className="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+      <div className="w-full max-w-sm glass-card rounded-2xl shadow-xl max-h-[70vh] flex flex-col overflow-hidden relative">
+        <div className="flex items-center justify-between border-b border-gray-200/50 dark:border-dark-border px-4 py-3">
+          <h2 className="font-semibold text-gray-900 dark:text-dark-text-primary">{title}</h2>
+          <button onClick={onClose} className="text-gray-500 dark:text-dark-text-secondary hover:text-gray-900 dark:hover:text-dark-text-primary cursor-pointer">
             <X size={20} />
           </button>
         </div>
@@ -29,7 +29,7 @@ export default function FollowListModal({ title, users, onClose }: FollowListMod
                   key={user.id}
                   to={`/profile/${user.username}`}
                   onClick={onClose}
-                  className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800/60 transition"
+                  className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-gray-100 dark:hover:bg-dark-border/40 transition"
                 >
                   <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center font-bold text-white flex-shrink-0 overflow-hidden">
                     {user.profilePictureUrl ? (
@@ -38,7 +38,7 @@ export default function FollowListModal({ title, users, onClose }: FollowListMod
                       initial
                     )}
                   </div>
-                  <p className="text-gray-900 dark:text-white text-sm font-medium">{user.username}</p>
+                  <p className="text-gray-900 dark:text-dark-text-primary text-sm font-medium">{user.username}</p>
                 </Link>
               );
             })

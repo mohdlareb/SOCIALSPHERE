@@ -64,9 +64,9 @@ export default function NotificationBell() {
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-2 w-72 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-xl max-h-96 overflow-y-auto z-50">
-          <div className="p-3 border-b border-gray-200 dark:border-gray-800">
-            <p className="font-semibold text-sm text-gray-900 dark:text-white">Notifications</p>
+        <div className="absolute right-0 mt-2 w-72 bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-xl shadow-xl max-h-96 overflow-y-auto z-50">
+          <div className="p-3 border-b border-gray-200 dark:border-dark-border">
+            <p className="font-semibold text-sm text-gray-900 dark:text-[#F9FAFB]">Notifications</p>
           </div>
           {notifications.length === 0 ? (
             <p className="text-gray-500 text-sm p-4 text-center">No notifications yet.</p>
@@ -75,8 +75,8 @@ export default function NotificationBell() {
               const initial = n.actorUsername.charAt(0).toUpperCase();
               return (
                 <div
-                  key={n.id}
-                  className="flex items-center gap-3 p-3 border-b border-gray-100 dark:border-gray-800 last:border-0"
+                   key={n.id}
+                   className="flex items-center gap-3 p-3 border-b border-gray-100 dark:border-dark-border last:border-0"
                 >
                   <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-xs font-bold text-white overflow-hidden flex-shrink-0">
                     {n.actorProfilePictureUrl ? (
@@ -86,8 +86,8 @@ export default function NotificationBell() {
                     )}
                   </div>
                   <div className="flex-1">
-                    <p className="text-sm text-gray-800 dark:text-gray-200">{describe(n)}</p>
-                    <p className="text-xs text-gray-400">{new Date(n.createdAt).toLocaleString()}</p>
+                    <p className="text-sm text-gray-800 dark:text-dark-text-primary">{describe(n)}</p>
+                    <p className="text-xs text-gray-400 dark:text-dark-text-secondary">{new Date(n.createdAt).toLocaleString()}</p>
                   </div>
                 </div>
               );
