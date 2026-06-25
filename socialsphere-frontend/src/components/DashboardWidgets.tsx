@@ -1,33 +1,32 @@
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Sparkles, TrendingUp, UserPlus, Check, Award } from 'lucide-react';
 import { mockDb } from '../utils/mockDb';
-import type { User } from '../types';
 
 export default function DashboardWidgets() {
   const navigate = useNavigate();
-  const [suggestions, setSuggestions] = useState<User[]>([]);
   const [followedState, setFollowedState] = useState<Record<string, boolean>>({});
+  const [removedSuggestions, setRemovedSuggestions] = useState<string[]>([]);
   const currentUser = localStorage.getItem('username') || '';
 
-  useEffect(() => {
-    // Get users that the current user doesn't follow yet
+  const suggestions = useMemo(() => {
     const allUsers = mockDb.getUsers();
     const following = mockDb.getFollowingList(currentUser);
-    const filtered = allUsers.filter((u) => u.username !== currentUser && !following.includes(u.username));
-    
-    // Default to a couple of users
-    setSuggestions(filtered.slice(0, 3));
-  }, [currentUser]);
+
+    return allUsers
+      .filter(
+        (u) =>
+          u.username !== currentUser &&
+          !following.includes(u.username) &&
+          !removedSuggestions.includes(u.username)
+      )
+      .slice(0, 3);
+  }, [currentUser, removedSuggestions]);
 
   const handleFollow = (username: string) => {
     mockDb.toggleFollow(username, currentUser);
     setFollowedState((prev) => ({ ...prev, [username]: true }));
-    // trigger check sync
-    setTimeout(() => {
-      // remove followed from list
-      setSuggestions((prev) => prev.filter((u) => u.username !== username));
-    }, 1000);
+    setRemovedSuggestions((prev) => (prev.includes(username) ? prev : [...prev, username]));
   };
 
   return (
