@@ -5,7 +5,7 @@ import { useAuth } from '../context/useAuth';
 import type { EchoRoom } from '../types';
 import { Trash2, MessageSquare, Plus, ArrowRight, Radio } from 'lucide-react';
 import { getAllRooms, createRoom, joinRoom, deleteRoom } from '../api/roomApi';
-import { motion, AnimatePresence } from 'framer-motion';
+// framer-motion is optional; remove dependency to avoid build/type issues
 import CardTilt from '../components/CardTilt';
 
 export default function RoomsList() {
@@ -107,59 +107,51 @@ export default function RoomsList() {
 
       {/* Rooms Grid list */}
       <div className="space-y-4">
-        <AnimatePresence>
-          {rooms.map((room) => (
-            <motion.div
-              key={room.id}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              <CardTilt>
-                <div
-                  onClick={() => handleEnter(room)}
-                  className="w-full text-left bg-white/40 dark:bg-dark-card border border-gray-200/50 dark:border-dark-border rounded-2xl p-5 hover:border-purple-500/30 transition-all flex items-center justify-between cursor-pointer shadow-md select-none relative group"
-                >
-                  <div className="flex items-start gap-3 flex-1 min-w-0">
-                    <div className="p-3 bg-purple-500/10 text-purple-400 rounded-xl flex-shrink-0 mt-0.5">
-                      <MessageSquare size={16} />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-gray-900 dark:text-dark-text-primary font-bold text-sm truncate group-hover:text-purple-400 transition-colors">
-                        {room.name}
-                      </p>
-                      {room.description && (
-                        <p className="text-gray-400 dark:text-dark-text-secondary text-xs mt-0.5 truncate leading-relaxed">
-                          {room.description}
-                        </p>
-                      )}
-                      <p className="text-gray-500 dark:text-dark-text-secondary text-[10px] mt-2">
-                        Hosted by <span className="font-semibold text-gray-700 dark:text-dark-text-primary">@{room.creator.username}</span>
-                      </p>
-                    </div>
+        {rooms.map((room) => (
+          <div key={room.id}>
+            <CardTilt>
+              <div
+                onClick={() => handleEnter(room)}
+                className="w-full text-left bg-white/40 dark:bg-dark-card border border-gray-200/50 dark:border-dark-border rounded-2xl p-5 hover:border-purple-500/30 transition-all flex items-center justify-between cursor-pointer shadow-md select-none relative group"
+              >
+                <div className="flex items-start gap-3 flex-1 min-w-0">
+                  <div className="p-3 bg-purple-500/10 text-purple-400 rounded-xl flex-shrink-0 mt-0.5">
+                    <MessageSquare size={16} />
                   </div>
-
-                  <div className="flex items-center gap-3.5 flex-shrink-0 z-10 pl-2">
-                    {room.creator.username === username && (
-                      <button
-                        onClick={(e) => handleDelete(e, room.id)}
-                        className="p-2 text-gray-400 hover:text-red-500 transition hover:bg-red-500/10 rounded-xl cursor-pointer"
-                        aria-label="Delete room"
-                      >
-                        <Trash2 size={16} />
-                      </button>
+                  <div className="min-w-0">
+                    <p className="text-gray-900 dark:text-dark-text-primary font-bold text-sm truncate group-hover:text-purple-400 transition-colors">
+                      {room.name}
+                    </p>
+                    {room.description && (
+                      <p className="text-gray-400 dark:text-dark-text-secondary text-xs mt-0.5 truncate leading-relaxed">
+                        {room.description}
+                      </p>
                     )}
-                    <span className="text-purple-400 font-bold text-xs flex items-center gap-0.5 group-hover:translate-x-1 transition-transform">
-                      <span>Enter</span>
-                      <ArrowRight size={12} />
-                    </span>
+                    <p className="text-gray-500 dark:text-dark-text-secondary text-[10px] mt-2">
+                      Hosted by <span className="font-semibold text-gray-700 dark:text-dark-text-primary">@{room.creator.username}</span>
+                    </p>
                   </div>
                 </div>
-              </CardTilt>
-            </motion.div>
-          ))}
-        </AnimatePresence>
+
+                <div className="flex items-center gap-3.5 flex-shrink-0 z-10 pl-2">
+                  {room.creator.username === username && (
+                    <button
+                      onClick={(e) => handleDelete(e, room.id)}
+                      className="p-2 text-gray-400 hover:text-red-500 transition hover:bg-red-500/10 rounded-xl cursor-pointer"
+                      aria-label="Delete room"
+                    >
+                      <Trash2 size={16} />
+                    </button>
+                  )}
+                  <span className="text-purple-400 font-bold text-xs flex items-center gap-0.5 group-hover:translate-x-1 transition-transform">
+                    <span>Enter</span>
+                    <ArrowRight size={12} />
+                  </span>
+                </div>
+              </div>
+            </CardTilt>
+          </div>
+        ))}
       </div>
 
     </div>
