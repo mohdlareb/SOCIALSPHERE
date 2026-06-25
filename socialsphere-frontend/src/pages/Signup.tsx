@@ -71,7 +71,7 @@ export default function Signup() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0B0F19] text-gray-900 dark:text-white flex items-center justify-center px-4 relative overflow-hidden bg-mesh-light dark:bg-mesh-dark transition-colors duration-300">
+    <div className="min-h-screen bg-slate-50 dark:bg-dark-bg text-gray-900 dark:text-white flex items-center justify-center px-4 relative overflow-hidden bg-mesh-light dark:bg-mesh-dark transition-colors duration-300">
       {/* Floating Animated Ambient Elements */}
       <motion.div
         className="absolute w-72 h-72 rounded-full bg-purple-600/10 blur-3xl"
@@ -268,7 +268,7 @@ export default function Signup() {
                     alt="Preview avatar"
                     className="w-full h-full object-cover rounded-full bg-gray-800"
                   />
-                  <div className="absolute bottom-1 right-1 bg-green-500 w-5 h-5 rounded-full border-2 border-slate-50 dark:border-[#0B0F19] flex items-center justify-center">
+                  <div className="absolute bottom-1 right-1 bg-green-500 w-5 h-5 rounded-full border-2 border-slate-50 dark:border-dark-bg flex items-center justify-center">
                     <CheckCircle2 size={10} className="text-white" />
                   </div>
                 </div>

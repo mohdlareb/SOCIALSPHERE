@@ -156,7 +156,7 @@ export default function Feed() {
   if (!username) return null;
 
   return (
-    <div className="relative min-h-screen bg-[var(--app-bg)] dark:bg-[#0B0F19]">
+    <div className="relative min-h-screen bg-[var(--app-bg)]">
       
       {/* Stories Horizontal Tray */}
       <StoriesBar
