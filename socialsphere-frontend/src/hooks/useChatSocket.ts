@@ -15,6 +15,7 @@ export function useChatSocket(roomId: number): UseChatSocketReturn {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [connected, setConnected] = useState(false);
   const clientRef = useRef<Client | null>(null);
+  
 
   useEffect(() => {
     const client = new Client({
