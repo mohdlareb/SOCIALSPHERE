@@ -8,8 +8,8 @@
   --color-brand-pink: #ec4899;
   --color-brand-blue: #3b82f6;
   --color-brand-cyan: #06b6d4;
-  --color-dark-bg: #0B0F19;
-  --color-dark-card: #111827;
+  --color-dark-bg: #05070a;
+  --color-dark-card: #000000;
   --color-dark-border: #1F2937;
   --color-dark-text-primary: #F9FAFB;
   --color-dark-text-secondary: #9CA3AF;
@@ -30,14 +30,14 @@
 
 .dark {
   color-scheme: dark;
-  --app-bg: #0B0F19;
-  --app-surface: #111827;
-  --app-card: #111827;
-  --app-card-soft: rgba(17, 24, 39, 0.82);
+  --app-bg: #05070a;
+  --app-surface: #000000;
+  --app-card: #000000;
+  --app-card-soft: rgba(0, 0, 0, 0.85);
   --app-border: #1F2937;
   --app-text: #F9FAFB;
   --app-text-muted: #9CA3AF;
-  --app-shadow: 0 24px 80px -24px rgba(2, 6, 23, 0.9);
+  --app-shadow: 0 24px 80px -24px rgba(0, 0, 0, 0.95);
 }
 
 html, body, #root {
@@ -147,7 +147,7 @@ body {
 .dark input,
 .dark textarea,
 .dark select {
-  background-color: rgba(17, 24, 39, 0.82) !important;
+  background-color: var(--app-card-soft) !important;
   color: var(--app-text) !important;
   border-color: var(--app-border) !important;
 }
@@ -174,14 +174,14 @@ body {
   -webkit-backdrop-filter: blur(24px) !important;
   border: 1px solid rgba(226, 232, 240, 0.8) !important;
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02) !important;
-}
 
-.dark .glass-card {
-  background: #111827 !important;
-  backdrop-filter: blur(24px) !important;
-  -webkit-backdrop-filter: blur(24px) !important;
-  border: 1px solid #1F2937 !important;
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+  .dark & {
+    background: var(--app-card) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border: 1px solid var(--app-border) !important;
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+  }
 }
 
 @utility glass-input {
@@ -190,12 +190,12 @@ body {
   -webkit-backdrop-filter: blur(12px) !important;
   border: 1px solid rgba(226, 232, 240, 0.8) !important;
   color: #0F172A !important;
-}
 
-.dark .glass-input {
-  background: rgba(17, 24, 39, 0.6) !important;
-  border: 1px solid #1F2937 !important;
-  color: #F9FAFB !important;
+  .dark & {
+    background: rgba(0, 0, 0, 0.6) !important;
+    border: 1px solid var(--app-border) !important;
+    color: var(--app-text) !important;
+  }
 }
 
 @utility neon-glow-purple {
@@ -227,7 +227,7 @@ body {
 }
 
 .bg-mesh-dark {
-  background-color: #0B0F19;
+  background-color: var(--color-dark-bg);
   background-image: 
     radial-gradient(at 10% 20%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
     radial-gradient(at 90% 10%, rgba(139, 92, 246, 0.18) 0px, transparent 50%),

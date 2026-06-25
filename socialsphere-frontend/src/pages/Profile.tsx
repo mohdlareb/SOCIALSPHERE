@@ -293,7 +293,7 @@ export default function Profile() {
                   />
                 </svg>
                 <div className="absolute top-[16%] left-[60%] w-3 h-3 bg-purple-500 rounded-full animate-ping" />
-                <div className="absolute top-[16%] left-[60%] w-3 h-3 bg-purple-500 rounded-full border-2 border-slate-50 dark:border-[#0B0F19]" />
+                <div className="absolute top-[16%] left-[60%] w-3 h-3 bg-purple-500 rounded-full border-2 border-slate-50 dark:border-dark-bg" />
               </div>
               <div className="flex justify-between items-center text-[10px] text-gray-500 mt-2">
                 <span>Mon</span>
