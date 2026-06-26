@@ -31,15 +31,16 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/signup", "/api/auth/login", "/ws/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/posts/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/users/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/rooms/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/follow/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/uploads/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/stories/**").permitAll()
-                .anyRequest().authenticated()
-            )
+            	    .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+            	    .requestMatchers("/api/auth/signup", "/api/auth/login", "/ws/**").permitAll()
+            	    .requestMatchers(HttpMethod.GET, "/api/posts/**").permitAll()
+            	    .requestMatchers(HttpMethod.GET, "/api/users/**").permitAll()
+            	    .requestMatchers(HttpMethod.GET, "/api/rooms/**").permitAll()
+            	    .requestMatchers(HttpMethod.GET, "/api/follow/**").permitAll()
+            	    .requestMatchers(HttpMethod.GET, "/api/stories/**").permitAll()
+            	    .requestMatchers(HttpMethod.GET, "/uploads/**").permitAll()
+            	    .anyRequest().authenticated()
+            	)
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
