@@ -9,6 +9,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
+
 
 @Service
 public class StoryService {
@@ -48,7 +50,8 @@ public class StoryService {
     }
 
     // Runs every hour, permanently removes expired stories from the database
-    @Scheduled(fixedRate = 3600000)
+    @Transactional
+    @Scheduled(fixedRate = 60000)   // or your existing schedule
     public void cleanupExpiredStories() {
         storyRepository.deleteByExpiresAtBefore(LocalDateTime.now());
     }
